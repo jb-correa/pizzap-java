@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap"
+	rel="stylesheet">
+<script src="https://kit.fontawesome.com/351d56060d.js"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/shop.css">
+<title>PizzApp</title>
+</head>
+
+<body class="text-light">
+
+	    <!-- NAVBAR -->
+    
+    <!-- NAVBAR USUARIO REGISTRADO-->
+    <th:block th:if="${#authorization.expression('hasAnyRole(''ROLE_USER_REGISTER'')')}">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index">PizzApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav mx-auto seccion">
+                        <a class="nav-link link" href="index">Inicio</a>
+                        <a class="nav-link link" href="product">Productos</a>
+                        <a class="nav-link link" href="contact">Contacto</a>
+                        <a class="nav-link link" href="shop">Mis Compras</a>
+                    </div>
+                    <div class="col-auto text-center botones">
+                        <a href="logout" class="redir">
+                        	<button type="button" class="btn btn-lg in"> Cerrar Sesión </button></a> 
+                        	<a href="#"	class="redir">
+						<button type="button" class="btn btn-lg re" th:if="${session.sessionuser !=null}" th:text="${session.sessionuser.name}" style="color: white">Registrate</button>
+						</a>
+                    </div>
+                </div>
+        </nav>
+    </th:block>
+    <!-- NAVBAR USUARIO SIN REGISTRO -->
+    <th:block th:if="${session.sessionuser == null}">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index">PizzApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav mx-auto seccion">
+                        <a class="nav-link link" href="index">Inicio</a>
+                        <a class="nav-link link" href="product">Productos</a>
+                        <a class="nav-link link" href="contact">Contacto</a>
+                        <a class="nav-link link" href="shop">Mis Compras</a>
+                    </div>
+                    <div class="col-auto text-center botones">
+                        <a href="login" class="redir"><button type="button" class="btn btn-lg in">
+                                Ingresar</button></a>
+                        <a href="registrate" class="redir"> <button type="button" class="btn btn-lg re">
+                                Registrate</button></a>
+                    </div>
+                </div>
+        </nav>
+    </th:block>
+    
+    <!-- NAVBAR ADMIN-->
+    <th:block th:if="${#authorization.expression('hasAnyRole(''ROLE_USER_ADMIN'')')}">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index">PizzApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav mx-auto seccion">
+                        <a class="nav-link link" href="index">Inicio</a>
+                        <a class="nav-link link" href="product">Productos</a>
+                        <a class="nav-link link" href="contact">Contacto</a>
+                        <a class="nav-link link" href="shop">Mis Compras</a>
+                        <a class="nav-link link" href="product-stock">Agregar productos</a>
+                    </div>
+                    <div class="col-auto text-center botones">
+                        <a href="logout" class="redir">
+                        	<button type="button" class="btn btn-lg in"> Salir modo Administrador </button></a> 
+                        	<a href="#"	class="redir">
+						<button type="button" class="btn btn-lg re" th:if="${session.sessionuser !=null}" th:text="${session.sessionuser.name}" style="color: white">Registrate</button>
+						</a>
+                    </div>
+                </div>
+        </nav>
+    </th:block>
+
+    <!-- SLIDER -->
+    <header>
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="assets/index/slide1.png " class=" imgaslide d-block w-100" alt="...">
+                    <div class="carousel-caption  d-md-block">
+                        <h5 class=" text-start  fs-1 fw-bold carousel-tittle">•LAS PIZZAS MÁS EXQUISITAS•</h5>
+                        <p class=" text-start fs-4 parraslide"> Tenemos variedades para todos los gustos </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/index/slide2.png" class="imgaslide d-block w-100" alt="...">
+                    <div class="carousel-caption  d-md-block">
+                        <h5 class=" text-start fs-1 fw-bold carousel-tittle">•MATERIA PRIMA DE PRIMERA CALIDAD•
+                        </h5>
+                        <p class=" text-start fs-4 parraslide">Verduras orgánicas</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/index/slide3.png" class=" imgaslide d-block w-100" alt="...">
+                    <div class="carousel-caption  d-md-block">
+                        <h5 class="text-start fs-1 fw-bold carousel-tittle">•VARIEDADES APTAS PARA TODOS•</h5>
+                        <p class="text-start fs-4 parraslide ">Pizzas sin TACC, veganas y clásicas</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </header>
+
+	<div class="contenedor">
+		<div class="contenedor1">
+			<div>
+				<h1 class="titulo">Descripción de tu pedido:</h1>
+			</div>
+			<div class="table-border">
+				<div class="tabla">
+					<table class="table table-striped">
+						<thead>
+							<th class="th-titulo">Producto</th>
+							<th class="th-titulo">Tipo</th>
+							<th class="th-titulo">Precio</th>
+						</thead>
+						<tbody th:each="product : ${listProducts}">
+							<tr>							
+								<td scope="row" th:text="${product.name}">name</td>
+								<td scope="row" th:text="${product.type}">type</td>
+								<td scope="row" th:text="${product.price}">precio</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="contenedor2">
+			<div>
+				<h1 class="titulo">Resumen de tu compra:</h1>
+			</div>
+			<div class="table-border">
+				<table class="table-borderless">
+					<thead>
+						<th>Detalle</th>
+						<th>Precio</th>
+					</thead>
+					<tbody th:each="price : ${saldoTotal}">
+						<tr>
+							<td>Subtotal: </td>
+							<td th:text="${price}">Total ticket</td>
+						</tr>
+						<tr>
+							<td>Envio:  </td>
+							<td>$100 </td>
+
+						</tr>
+						<tr>
+							<td>TOTAL: </td>
+							<td th:text="${price}+100">$TOTAL</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+
+			<div class="botonesPagar">
+				<a href="creditCardForm"><button class="boton"
+						type="button">Pagar</button></a> <a href="product"><button
+						class="boton" type="button">Seguir comprando</button></a>
+			</div>
+		</div>
+
+
+	</div>
+
+
+	<!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="row">
+            <div class="col-4">
+                <h1 class="text-footer">2021|PizzApp</h1>
+            </div>
+            <div class="col-4">
+                <p class="barras"> - </p>
+                <i class="fas fa-pizza-slice pizza"></i>
+                <p class="barras"> - </p>
+            </div>
+            <div class="col-4">
+                <i class="fab fa-facebook-f icons"></i>
+                <i class="fab fa-twitter icons"></i>
+                <i class="fab fa-whatsapp icons"></i>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col copy">
+                <p> &copy; Todos los derechos reservados a PizzApp | 2021</p>
+
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

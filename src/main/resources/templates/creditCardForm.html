@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Credit Card Validation Demo</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/creditCardForm.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <!-- NAVBAR USUARIO REGISTRADO-->
+
+        <nav class="navbar navbar-expand-lg navbar-dark credit_card-nav">
+            <div class="container">
+                <a class="navbar-brand" href="index">PizzApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="col-auto botones">
+                        <a href="shop" class="redir"><button type="button" class="btn btn-lg in">
+                                Volver a compras</button></a>
+                    </div>
+                </div>
+        </nav>
+
+
+
+
+    <!-- CREDIT CARD FORM -->
+    <div class="creditCardForm">
+        <div class="heading">
+            <h1>DATOS DE PAGO</h1>
+        </div>
+        <div class="payment">
+            <form>
+                <div class="form-group owner">
+                    <label for="owner">Nombre completo</label>
+                    <input type="text" class="form-control" id="owner">
+                </div>
+                <div class="form-group CVV">
+                    <label for="cvv">CVV</label>
+                    <input type="text" class="form-control" id="cvv">
+                </div>
+                <div class="form-group" id="card-number-field">
+                    <label for="cardNumber">Número de tarjeta</label>
+                    <input type="text" class="form-control" id="cardNumber">
+                </div>
+                <div class="form-group" id="expiration-date">
+                    <label>Fecha de expiración</label>
+                    <select>
+                        <option value="01">Enero</option>
+                        <option value="02">Febrero </option>
+                        <option value="03">Marzo</option>
+                        <option value="04">Abril</option>
+                        <option value="05">Mayo</option>
+                        <option value="06">Junio</option>
+                        <option value="07">Julio</option>
+                        <option value="08">Agosto</option>
+                        <option value="09">Septiembre</option>
+                        <option value="10">Octubre</option>
+                        <option value="11">Noviembre</option>
+                        <option value="12">Diciembre</option>
+                    </select>
+                    <select>
+                        <option value="21"> 2021</option>
+                        <option value="22"> 2022</option>
+                        <option value="23"> 2023</option>
+                        <option value="24"> 2024</option>
+                        <option value="25"> 2025</option>
+                        <option value="26"> 2026</option>
+                        <option value="27"> 2027</option>
+                    </select>
+                </div>
+                <div class="form-group" id="credit_cards">
+                    <img src="assets/shop/americanexpress.jpeg" alt="visa">
+                    <img src="assets/shop/mastercard.jpeg" alt="mastercard">
+                    <img src="assets/shop/visa.jpeg" alt="amex">
+                </div>
+              
+                <button type="submit" class="boton" id="confirm-purchase"><a class="aboton" data-bs-toggle="collapse" href="#compraExitosa"
+                        role="button" aria-expanded="false" aria-controls="compraExitosa">
+                        <h5 class="titulo"> CONFIRMAR PAGO </h5>
+                    </a></button>
+
+                <div class="collapse" id="compraExitosa">
+                    <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">¡PAGO EXITOSO!</h4>
+                        <p>Su pago ha sido recibido. Su pedido se encuentra en preparación. Y pronto llegara al
+                            domicilio registrado</p>
+                        <hr>
+                        <p class="mb-0">Muchas gracias por su compra! PizzApp ♥</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="row">
+            <div class="col-4">
+                <h1 class="text-footer">2021|PizzApp</h1>
+            </div>
+            <div class="col-4">
+                <p class="barras"> - </p>
+                <i class="fas fa-pizza-slice pizza"></i>
+                <p class="barras"> - </p>
+            </div>
+            <div class="col-4">
+                <i class="fab fa-facebook-f icons"></i>
+                <i class="fab fa-twitter icons"></i>
+                <i class="fab fa-whatsapp icons"></i>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col copy">
+                <p> &copy; Todos los derechos reservados a PizzApp | 2021</p>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="assets/js/jquery.payform.min.js" charset="utf-8"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

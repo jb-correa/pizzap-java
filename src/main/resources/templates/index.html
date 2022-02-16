@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/351d56060d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>PizzApp</title>
+</head>
+
+<body class="text-light">
+
+    <!-- NAVBAR -->
+    
+    <!-- NAVBAR USUARIO REGISTRADO-->
+    <th:block th:if="${#authorization.expression('hasAnyRole(''ROLE_USER_REGISTER'')')}">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index">PizzApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav mx-auto seccion">
+                        <a class="nav-link link" href="index">Inicio</a>
+                        <a class="nav-link link" href="product">Productos</a>
+                        <a class="nav-link link" href="contact">Contacto</a>
+                        <a class="nav-link link" href="shop">Mis Compras</a>
+                    </div>
+                    <div class="col-auto text-center botones">
+                        <a href="logout" class="redir">
+                        	<button type="button" class="btn btn-lg in"> Cerrar Sesión </button></a> 
+                        	<a href="#"	class="redir">
+						<button type="button" class="btn btn-lg re" th:if="${session.sessionuser !=null}" th:text="${session.sessionuser.name}" style="color: white">Registrate</button>
+						</a>
+                    </div>
+                </div>
+        </nav>
+    </th:block>
+    <!-- NAVBAR USUARIO SIN REGISTRO -->
+    <th:block th:if="${session.sessionuser == null}">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index">PizzApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav mx-auto seccion">
+                        <a class="nav-link link" href="index">Inicio</a>
+                        <a class="nav-link link" href="product">Productos</a>
+                        <a class="nav-link link" href="contact">Contacto</a>
+                        <a class="nav-link link" href="shop">Mis Compras</a>
+                    </div>
+                    <div class="col-auto text-center botones">
+                        <a href="login" class="redir"><button type="button" class="btn btn-lg in">
+                                Ingresar</button></a>
+                        <a href="registrate" class="redir"> <button type="button" class="btn btn-lg re">
+                                Registrate</button></a>
+                    </div>
+                </div>
+        </nav>
+    </th:block>
+    
+    <!-- NAVBAR ADMIN-->
+    <th:block th:if="${#authorization.expression('hasAnyRole(''ROLE_USER_ADMIN'')')}">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index">PizzApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav mx-auto seccion">
+                        <a class="nav-link link" href="index">Inicio</a>
+                        <a class="nav-link link" href="product">Productos</a>
+                        <a class="nav-link link" href="contact">Contacto</a>
+                        <a class="nav-link link" href="shop">Mis Compras</a>
+                        <a class="nav-link link" href="product-stock">Agregar productos</a>
+                    </div>
+                    <div class="col-auto text-center botones">
+                        <a href="logout" class="redir">
+                        	<button type="button" class="btn btn-lg in"> Salir modo Administrador </button></a> 
+                        	<a href="#"	class="redir">
+						<button type="button" class="btn btn-lg re" th:if="${session.sessionuser !=null}" th:text="${session.sessionuser.name}" style="color: white">Registrate</button>
+						</a>
+                    </div>
+                </div>
+        </nav>
+    </th:block>
+
+    <!-- SLIDER -->
+    <header>
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="assets/index/slide1.png " class=" imgaslide d-block w-100" alt="...">
+                    <div class="carousel-caption  d-md-block">
+                        <h5 class=" text-start  fs-1 fw-bold carousel-tittle">•LAS PIZZAS MÁS EXQUISITAS•</h5>
+                        <p class=" text-start fs-4 parraslide"> Tenemos variedades para todos los gustos </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/index/slide2.png" class="imgaslide d-block w-100" alt="...">
+                    <div class="carousel-caption  d-md-block">
+                        <h5 class=" text-start fs-1 fw-bold carousel-tittle">•MATERIA PRIMA DE PRIMERA CALIDAD•
+                        </h5>
+                        <p class=" text-start fs-4 parraslide">Verduras orgánicas</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/index/slide3.png" class=" imgaslide d-block w-100" alt="...">
+                    <div class="carousel-caption  d-md-block">
+                        <h5 class="text-start fs-1 fw-bold carousel-tittle">•VARIEDADES APTAS PARA TODOS•</h5>
+                        <p class="text-start fs-4 parraslide ">Pizzas sin TACC, veganas y clásicas</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- OBJETIVOS -->
+    <section id="objetivo">
+        <div class="container text-left">
+            <div class="row pb-5">
+                <div class="col-12 col-lg-6 textoobj">
+                    <h2 class="py-4 px-4"> PizzApp: tu pizzería online</h2>
+                    <p class="px-4 text">Nuestras pizzas estan elaboradas bajo los más estrictos estandares de
+                        producción. Contamos con gran variedad de productos y materia prima de primera calidad. Si sos
+                        amante de
+                        los clasicos, la fugazza con muzzarella va con todo. Para los amantes veggie, nuestra
+                        especialidad: pizza serrana, una combinacion de rucula, parmesano y tomates cherrys. ¿Preferis
+                        nuestra opcion sin tacc? La novedad: pizza con harina de arroz. Dejate tentar,
+                        quedate en casa que nosotros te la llevamos.</p>
+                </div>
+                <div class="col fotos">
+                    <div class="row dosfotos">
+                        <div class="col-6 fotito">
+                            <img src="assets/index/objetivo1.png" class="img" cl alt="">
+                        </div>
+                        <div class="col-6 fotito">
+                            <img src="assets/index/objetivo2.png" class="img" alt="">
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col sm-12 fotito">
+                            <img src="assets/index/objetivo3.png" class="img" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- VARIEDAD -->
+    <section class="text-center my-5 variedad">
+        <div class="container">
+            <h2>Conoce nuestras variedades</h2>
+            <div class="div-serv">
+                <p class="p-serv"> Hace click y conocé las distintas opciones dentro de cada menú</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mt-5">
+                    <img src="assets/index/menuclasica.png" class="perfil" alt="">
+                    <h3 class="my-3">Pizza clasica</h3>
+                    <a href="product" class="redir"> <button type="button" class="btn btn-lg re">
+                            Comprar</button></a>
+                </div>
+                <div class="col-md-4 mt-5">
+                    <img src="assets/index/menusintacc.png" class="perfil" alt="">
+                    <h3 class="my-3">Pizza sin TACC</h3>
+                    <a href="product" class="redir"> <button type="button" class="btn btn-lg re">
+                            Comprar</button></a>
+                </div>
+                <div class="col-md-4 mt-5">
+                    <img src="assets/index/menuvegano.jpg" class="perfil" alt="">
+                    <h3 class="my-3">Pizzas Veganas</h3>
+                    <a href="product" class="redir"> <button type="button" class="btn btn-lg re">
+                            Comprar</button></a>
+                </div>
+            </div>
+    </section>
+
+    <!-- GALERIA DE FOTOS -->
+    <section id="fotos" class="text-center">
+        <div class="container">
+            <h2 class="pt-5">Nuestros servicios</h2>
+            <div class="div-serv">
+                <p class="p-serv">Podes contratarnos para fiestas de cumpleaños, casamientos, reuniones familiares</p>
+                <p class="p-serv">También podes encontrarnos en las apps de UberEats y PedidoYa</p>
+            </div>
+
+        </div>
+        <div class="gallery-container">
+            <div class="gallery__item">
+                <img src="/assets/index/uber-eats.png" alt="" class="gallery__img">
+            </div>
+            <div class="gallery__item">
+                <img src="/assets/index/galeria1.jpg" alt="" class="gallery__img">
+            </div>
+            <div class="gallery__item">
+                <img src="assets/index/galeria17.jpg" alt="" class="gallery__img">
+            </div>
+            <div class="gallery__item">
+                <img src="assets/index/galeria15.jpg" alt="" class="gallery__img">
+            </div>
+            <div class="gallery__item">
+                <img src="assets/index/galeria9.jpg" alt="" class="gallery__img">
+            </div>
+            <div class="gallery__item">
+                <img src="assets/index/pedidosya.png" alt="" class="gallery__img">
+            </div>
+            <div class="gallery__item">
+                <img src="assets/index/galeria7.jpg" alt="" class="gallery__img">
+            </div>
+            <div class="gallery__item">
+                <img src="assets/index/galeria2.jpg" alt="" class="gallery__img">
+            </div>
+            <div class="gallery__item">
+                <img src="assets/index/galeria22.jpg" alt="" class="gallery__img">
+            </div>
+        </div>
+    </section>
+
+    <!-- MAPA -->
+    <section class="mapa">
+        <div class="contenedor">
+            <div class="mapa__iframe">
+                <h3> ¡También podes visitar nuestro local! </h3>
+                <p> Av Nicolás de Piérola 942</p>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.8744018255616!2d-77.03726188530837!3d-12.052161691463677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8c86ee1e773%3A0x5a934f86f41f490b!2sRestaurante+Plaza+San+Mart%C3%ADn!5e0!3m2!1ses!2spe!4v1526171528511"
+                    width="90%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="row">
+            <div class="col-4">
+                <h1 class="text-footer">2021|PizzApp</h1>
+            </div>
+            <div class="col-4">
+                <p class="barras"> - </p>
+                <i class="fas fa-pizza-slice pizza"></i>
+                <p class="barras"> - </p>
+            </div>
+            <div class="col-4">
+                <i class="fab fa-facebook-f icons"></i>
+                <i class="fab fa-twitter icons"></i>
+                <i class="fab fa-whatsapp icons"></i>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col copy">
+                <p> &copy; Todos los derechos reservados a PizzApp | 2021</p>
+
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

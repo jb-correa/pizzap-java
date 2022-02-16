@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<div class="container" th:defragment="nav2">
+	<a class="navbar-brand" href="index.html">PizzApp</a>
+	<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+		data-bs-target="#navbarNavAltMarkup"
+		aria-controls="navbarNavAltMarkup" aria-expanded="false"
+		aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav mx-auto seccion">
+			<a class="nav-link link" href="index">Inicio</a> <a
+				class="nav-link link" href="product">Productos</a> <a
+				class="nav-link link" href="contact">Contacto</a> <a
+				class="nav-link link" href="shop">Mis Compras</a>
+		</div>
+		<div class="col-auto text-center botones">
+			<a href="logout" class="redir"><button type="button"
+					class="btn btn-lg in">Logout</button></a> <a href="#"
+				class="redir">
+				<button type="button" class="btn btn-lg re" th:if="${session.sessionuser !=null}" th:text="${session.sessionuser.name}" style="color: white">Usuario</button>
+			</a>
+		</div>
+	</div>
+</html>
